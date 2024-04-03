@@ -11,12 +11,12 @@ import MapComponent from "./MapComponent";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
-import { useSpeechSynthesis } from 'react-speech-kit';
+import { useSpeechSynthesis } from "react-speech-kit";
 
 const ArtCenterCard = ({ center }) => {
   const [showMap, setShowMap] = useState(false);
   const { speak, cancel } = useSpeechSynthesis();
-  const [isSpeaking, setIsSpeaking] = useState(false); 
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const toggleMap = () => {
     setShowMap(!showMap);
@@ -33,7 +33,7 @@ const ArtCenterCard = ({ center }) => {
       setIsSpeaking(false);
     } else {
       // If not speaking, start speaking
-      speak({ text: center.ACIKLAMA});
+      speak({ text: center.ACIKLAMA, lang: "tr-TR" });
       setIsSpeaking(true);
     }
   };
@@ -50,7 +50,7 @@ const ArtCenterCard = ({ center }) => {
       <CardFooter>
         <div className="flex flex-col items-start w-full">
           <Button className="mb-3 w-36" onClick={handleSpeakDescription}>
-            {isSpeaking ? 'Duraklat' : 'Başlat'} {/* Play-pause button */}
+            {isSpeaking ? "Duraklat" : "Başlat"} {/* Play-pause button */}
           </Button>
           <Dialog>
             <DialogTrigger>
@@ -67,7 +67,9 @@ const ArtCenterCard = ({ center }) => {
           </Button>
         </div>
         <div className="flex justify-between w-64">
-          <Label>{center.MAHALLE} - {center.ILCE}</Label>
+          <Label>
+            {center.MAHALLE} - {center.ILCE}
+          </Label>
           <Label></Label>
         </div>
       </CardFooter>
