@@ -41,7 +41,7 @@ const ArtCenterCard = ({ center }) => {
   };
 
   return (
-    <Card className="relative w-full h-150 m-5">
+    <Card className="relative w-full h-150 mb-5">
       <CardHeader>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Avatar style={{ marginRight: "0.5rem" }}>
@@ -77,9 +77,7 @@ const ArtCenterCard = ({ center }) => {
             Yol Tarifi Al
           </Button>
         </div>
-        <div className="flex flex-col">
-          <Badge className='w-40 h-8'>{center.MAHALLE} Mah.</Badge>
-        </div>
+
       </CardFooter>
     </Card>
   );
