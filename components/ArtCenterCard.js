@@ -12,6 +12,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { useSpeechSynthesis } from "react-speech-kit";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
 
 const ArtCenterCard = ({ center }) => {
   const [showMap, setShowMap] = useState(false);
@@ -41,20 +43,29 @@ const ArtCenterCard = ({ center }) => {
   return (
     <Card className="relative w-full h-150 m-5">
       <CardHeader>
-        <CardTitle>{center.ADI}</CardTitle>
-        <CardDescription>{center.ILCE}</CardDescription>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Avatar style={{ marginRight: "0.5rem" }}>
+            <AvatarImage src="/images/izmir.svg" />
+          </Avatar>
+          <div>
+            <CardTitle>{center.ADI}</CardTitle>
+            <CardDescription>{center.ILCE}</CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <Label>{center.ACIKLAMA}</Label>
       </CardContent>
       <CardFooter>
         <div className="flex flex-col items-start w-full">
-          <Button className="mb-3 w-36" onClick={handleSpeakDescription}>
-            {isSpeaking ? "Duraklat" : "Başlat"} {/* Play-pause button */}
-          </Button>
+          {center.ACIKLAMA.length > 0 && (
+            <Button className="mb-3 w-32" onClick={handleSpeakDescription}>
+              {isSpeaking ? "Durdur" : "Sesli Oku"} {/* Play-pause button */}
+            </Button>
+          )}
           <Dialog>
             <DialogTrigger>
-              <Button className="w-36" onClick={toggleMap}>
+              <Button className="w-32" onClick={toggleMap}>
                 Haritada Göster
               </Button>
             </DialogTrigger>
@@ -62,15 +73,12 @@ const ArtCenterCard = ({ center }) => {
               <MapComponent center={[center.ENLEM, center.BOYLAM]} />
             </DialogContent>
           </Dialog>
-          <Button className="mt-3 w-36" onClick={handleGetDirections}>
+          <Button className="mt-3 w-32" onClick={handleGetDirections}>
             Yol Tarifi Al
           </Button>
         </div>
-        <div className="flex justify-between w-64">
-          <Label>
-            {center.MAHALLE} - {center.ILCE}
-          </Label>
-          <Label></Label>
+        <div className="flex flex-col">
+          <Badge className='w-40 h-8'>{center.MAHALLE} Mah.</Badge>
         </div>
       </CardFooter>
     </Card>

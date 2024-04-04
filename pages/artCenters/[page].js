@@ -10,6 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"; // Pagination bileşenlerini ekliyoruz
+import StickyNavigationMenu from '@/components/StickyNavigationMenu';
 
 const ArtCentersPage = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const ArtCentersPage = () => {
 
   return (
     <div className="container">
-      {/* Skeleton öğeleri artCenters boşsa veya loading true ise göster */}
+      <StickyNavigationMenu />
       {(artCenters.length === 0 || loading) && (
         <div className="skeleton-container">
           {/* 8 adet skeleton ekliyoruz */}

@@ -13,6 +13,7 @@ export default async (req, res) => {
   // Düzgün karakter kodlaması için özel karakterleri düzelt
   const normalizedArtCenters = data.onemliyer.map(artCenter => {
     // Tüm özel karakterleri düzeltmek için düzenli ifade kullanılıyor
+    const normalizedName = artCenter.ADI.replace(/_/g, ' ');
     const normalizedDescription = artCenter.ACIKLAMA.replace(//g, "'")
                                                      .replace(//g, "'")
                                                      .replace(//g, '"')
@@ -20,6 +21,7 @@ export default async (req, res) => {
 
     return {
       ...artCenter,
+      ADI: normalizedName,
       ACIKLAMA: normalizedDescription,
     };
   });
